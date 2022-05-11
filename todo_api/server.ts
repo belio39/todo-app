@@ -1,10 +1,13 @@
 import express from "express";
+import cors from "cors";
 import config from "./config/config";
 import mssql from "mssql";
 import router from "./routes/user-route";
 
 const app = express();
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/", router);
 
 const connection = async () => {
